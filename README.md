@@ -4,6 +4,9 @@ These configuration files serve as an example on how to setup DNS on a linux box
 These configuration files would result in DHCPD updating DNS entries into DNS and thus automatically
 update DNS records dynamically as DHCPD updates its own records.
 
+These configurations are not intended to note and optimize every single parameter possible but rather
+serve as a functioning example to deploy the a dynamic dns environment with linux hosts.
+
 Do note that to see a listing of dynamically registered records, you need to read the journal and 
 not the self created dns zone files. for example:
 
