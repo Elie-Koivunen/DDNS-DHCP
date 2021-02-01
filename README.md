@@ -26,6 +26,7 @@ to generate a new key to be used between NAMED and DHCPD, run:
 dnssec-keygen -a HMAC-MD5 -b 128 -r /dev/urandom -n USER DDNS_UPDATE
 
 the above command will generate the key in your home directory path. e.g:
+
 [root@netservices ~]# pwd
 /root
 [root@netservices ~]# ll
