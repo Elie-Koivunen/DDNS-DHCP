@@ -1,5 +1,18 @@
 # DDNS-DHCP
 
+These configuration files serve as an example on how to setup DNS on a linux box along with DHCP.
+These configuration files would result in DHCPD updating DNS entries into DNS and thus automatically
+update DNS records dynamically as DHCPD updates its own records.
+
+Do note that to see a listing of dynamically registered records, you need to read the journal and 
+not the self created dns zone files. for example:
+
+named-journalprint /var/named/lab.scape.zone.jnl |egrep -i add|egrep -i 300|egrep -v TXT |sed -e 's/add //g'
+
+Dynamic entries are maintained in a binary format in zone files that end with ".jnl". original zone files
+are not modified!
+
+
 Acheiving Dynamic DNS on linux requires the following components:
 - named (bind server)
 - DHCP
