@@ -31,6 +31,8 @@ the above command will generate the key in your home directory path. e.g:
 [root@netservices ~]# ll
 total 16
 -rw-------. 1 root root   53 Jan 31 20:55 Kddns_update.+157+50689.key
+
 -rw-------. 1 root root  165 Jan 31 20:55 Kddns_update.+157+50689.private
+
 drwxr-xr-x. 2 root root   39 Jan 30 21:43 tmp
 
