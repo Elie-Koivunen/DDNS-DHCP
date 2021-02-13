@@ -53,7 +53,18 @@ yum -y install epel-release-7
 # install additional packages
 yum -y install dhcp tftp tftp-server syslinux vsftpd xinetd bind ansible bind-utils wget curl net-tools screen iftop iostat iozone iperf expect iptraf
 
+# reconfigure prior to starting services
+mv /etc/rndc.key /etc/rndc.key-bak
+cp /etc/named/ddns.key /etc/rndc.key
+touch /var/log/querylog
+chown named.named /var/log/querylog
+chown root.named /etc/rndc.key
 
+# start and enable service to launch
+systemctl start dhcpd.service
+systemctl enable dhcpd.service
+systemctl start named
+systemctl enable named
 
 
 
