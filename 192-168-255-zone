@@ -1,0 +1,13 @@
+; 192.168.255.zone
+$ORIGIN .
+$TTL 86400      ; 1 day
+255.168.192.in-addr.arpa IN SOA lab.scape. root.lab.scape. (
+                                99         ; serial
+                                604800     ; refresh (1 week)
+                                86400      ; retry (1 day)
+                                2419200    ; expire (4 weeks)
+                                86400      ; minimum (1 day)
+                                )
+                        NS      ns.lab.scape.
+$ORIGIN 255.168.192.in-addr.arpa.
+5                       PTR     netservices.lab.scape.
