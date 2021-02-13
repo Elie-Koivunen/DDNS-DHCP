@@ -1,0 +1,60 @@
+# check ip address
+ip a
+
+# set hostname
+hostnamectl set-hostname netservices
+
+# configure sshd
+echo "UseDNS no" >> /etc/ssh/sshd_config
+echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+systemctl restart sshd.service
+
+# disable firewalld
+systemctl disable firewalld
+systemctl stop firewalld
+systemctl status firewalld
+
+# disable selinux
+sestatus
+setenforce 0
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+sestatus
+
+# set timezone
+timedatectl set-timezone Europe/Helsinki
+timedatectl status
+
+# configure secondary interface on the host (in case not done earlier)
+mv ifcfg-ens34 bkp-ifcfg-ens34
+echo "NAME=ens34" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "TYPE=Ethernet" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "BOOTPROTO=none" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPADDR=192.168.255.5" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "PREFIX=24" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "#GATEWAY=192.168.255.5" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "DNS1=192.168.255.5" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "DEFROUTE=yes" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV4_FAILURE_FATAL=no" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "# Disable ipv6 #" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV6INIT=no" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV6_AUTOCONF=no" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV6_DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV6_FAILURE_FATAL=no" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "IPV6_ADDR_GEN_MODE=stable-privacy" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "UUID=48a8b7bb-6241-4e03-ba79-c8c382875618" >> /etc/sysconfig/network-scripts/ifcfg-e                                                                                                     ns34
+echo "DEVICE=ens34" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+echo "ONBOOT=yes" >> /etc/sysconfig/network-scripts/ifcfg-ens34
+nmcli -p dev
+
+# setup repo (in case not done earlier)
+yum --enablerepo=extras install epel-release -y
+yum -y install epel-release-7
+
+# install additional packages
+yum -y install dhcp tftp tftp-server syslinux vsftpd xinetd bind ansible bind-utils wget curl net-tools screen iftop iostat iozone iperf expect iptraf
+
+
+
+
+
+
