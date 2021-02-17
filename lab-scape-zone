@@ -1,18 +1,30 @@
-$TTL 3D
-@                       IN SOA  lab.scape. root.lab.scape. (
-                                21         ; serial
-                                8H         ; refresh (8 hours)
-                                2H         ; retry (2 hours)
-                                4W         ; expire (4 weeks)
-                                1D         ; minimum (1 day)
-                                )
-                        NS      netservices
-netservices             A       192.168.255.5
-gw                      A       192.168.255.5
-ns                      A       192.168.255.5
-ntp                     A       192.168.255.5
-smtp                    A       192.168.255.5
 
-$ORIGIN ad.lab.scape.
-@       IN      NS      DC.AD.LAB.SCAPE.
-dc.ad   IN      A       192.168.255.9
+$TTL            86400
+@       IN SOA            ns.lab.scape.  root.lab.scape. (
+36      ; serial
+1H      ; refresh
+1M      ; retry
+1M      ; expiry
+1D )    ; minimum
+;@               IN MX   10     mail.lab.scape.
+@                               IN      NS      ns.lab.scape.
+
+public-gw                       IN      A       172.16.1.2
+netservices                     IN      A       192.168.255.5
+ns                              IN      A       192.168.255.5
+gw                              IN      A       192.168.255.5
+ntp                             IN      A       192.168.255.5
+smtp                            IN      A       192.168.255.5
+mail                            IN      A       192.168.255.5
+iiq                             IN      A       192.168.255.9
+insightiq                       IN      CNAME   iiq.lab.scape.
+
+cls91-ssip                      IN      A       192.168.255.10
+cls91-mgmt.lab.scape.           IN      NS      cls91-ssip.lab.scape.
+cls91-nfs.lab.scape.            IN      NS      cls91-ssip.lab.scape.
+cls91-smb.lab.scape.            IN      NS      cls91-ssip.lab.scape.
+cls91-dyn.lab.scape.            IN      NS      cls91-ssip.lab.scape.
+cls91-stat.lab.scape.           IN      NS      cls91-ssip.lab.scape.
+
+dc.ad                           IN      A       192.168.255.9
+ad.lab.scape.                   IN      NS      dc.ad.lab.scape.
