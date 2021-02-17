@@ -1,0 +1,10 @@
+$TTL 3D
+@                       IN SOA  dyn.lab.scape. root.dyn.lab.scape. (
+                                2          ; serial
+                                8H         ; refresh (8 hours)
+                                2H         ; retry (2 hours)
+                                4W         ; expire (4 weeks)
+                                1D         ; minimum (1 day)
+                                )
+                        NS      netservices
+netservices             A       192.168.255.5
