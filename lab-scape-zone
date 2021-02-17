@@ -16,7 +16,7 @@ gw                              IN      A       192.168.255.5
 ntp                             IN      A       192.168.255.5
 smtp                            IN      A       192.168.255.5
 mail                            IN      A       192.168.255.5
-iiq                             IN      A       192.168.255.9
+iiq                             IN      A       192.168.255.8
 insightiq                       IN      CNAME   iiq.lab.scape.
 
 cls91-ssip                      IN      A       192.168.255.10
